@@ -7,5 +7,15 @@
     "action":{
         "default_popup": "index.html",
         "default_title": "Gr-In"
-    }
+    },
+    "content_scripts": [
+        {
+          "js": ["scripts/content.js"],
+          "matches": [
+            "https://amazon.de/*",
+            "https://amazon.fr/*",
+            "https://amazon.com/*"
+          ]
+        }
+    ]
 }
