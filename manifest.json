@@ -3,12 +3,24 @@
     "version": "0.0.1",
     "description": "Ecological footprint for online shopping",
     "manifest_version": 3,
+    "permissions": ["scripting"],
+    "host_permissions": [
+      "https://*.amazon.de/*",
+      "https://*.amazon.fr/*",
+      "https://*.amazon.com/*"
+    ],
     "author": "Nima GOZALPOUR, Adrien GEETS, Lucas VISINTIN, Hugo KOLANDER",
     "action":{
         "default_popup": "index.html",
         "default_title": "Gr-In"
+    
+
     },
-    "content_scripts": [
+    "background":{
+      "service_worker": "scripts/background.js"
+    }
+    /*
+    "content_scripts":[
         {
           "js": ["scripts/content.js"],
           "matches": [
@@ -18,4 +30,5 @@
           ]
         }
     ]
+    */
 }
