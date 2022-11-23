@@ -2,13 +2,12 @@
 if(typeof init === 'undefined'){
 
     let mountains = [
-        { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-        { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-        { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Amiata", height: 1738, place: "Siena" }
+        { name: "Manufacturer", height: "ABC", place: "F" },
+        { name: "Label", height: "D", place: "F" },
+        { name: "Energy consumption", height: "1520 kWh / year", place: "F" },
+        { name: "Water consumption", height: "50 L / load", place: "F" }
       ];
-      
+      /*
       function generateTableHead(table, data) {
         let thead = table.createTHead();
         let row = thead.insertRow();
@@ -19,6 +18,7 @@ if(typeof init === 'undefined'){
           row.appendChild(th);
         }
       }
+      */
       
       function generateTable(table, data) {
         for (let element of data) {
@@ -26,7 +26,23 @@ if(typeof init === 'undefined'){
           for (key in element) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
+            console.log(text)
+            if (element[key] == "F") {
+                console.log(text)
+                try{
+                const injectedSpan = document.createElement("SPAN");
+                injectedSpan.className = "circle";
+                injectedSpan.innerText = "t";
+                cell.appendChild(injectedSpan);
+                }catch(e){
+                    console.log(e)
+                }
+
+                //cell.appendChild(text);
+            }
+            else {    
             cell.appendChild(text);
+            }
           }
         }
       }
@@ -36,13 +52,13 @@ if(typeof init === 'undefined'){
         
         if (!document.getElementById("injection_GR-IN")){
             let table = document.querySelector("table");
-            let data = Object.keys(mountains[0]);
-            generateTableHead(table, data);
+            //generateTableHead(table, data);
             generateTable(table, mountains);
             const injectElement = document.createElement('div');
             injectElement.id = "injection_GR-IN";
             injectElement.className = 'rustyZone-element';
 
+            
             injectElement.appendChild(table)
             
             document.getElementById("altImages").appendChild(injectElement)
