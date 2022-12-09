@@ -23,7 +23,7 @@
 
     "content_scripts":[
         {
-          "js": ["scripts/content.js"],
+          "js": ["scripts/extraction.js", "scripts/content.js"],
           "css": [ "style.css" ],
           "matches": [
             "https://*.amazon.de/*",

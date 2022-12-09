@@ -7,7 +7,7 @@ try{
             //if (changeInfo.url) {
             console.log('hello');
             chrome.scripting.executeScript({
-            files: ['scripts/content.js'],
+            files: ['scripts/extraction.js', 'scripts/content.js'],
             target: {tabId: tab.id}
             });
       }

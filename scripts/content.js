@@ -1,6 +1,19 @@
 
 if(typeof init === 'undefined'){
 
+    // Returns the color appropriate for the score:
+    //  0- 2: red (bad)
+    //  3- 7: yellow
+    //  8-10: green (good)
+    function getScoreColor(score) {
+      if(score <= 2)
+        return "red";
+      else if(score <= 7)
+        return "yellow";
+      return "green";
+    }
+
+
     let mountains = [
         { name: "Manufacturer", height: "ABC", place: "F" },
         { name: "Label", height: "D", place: "F" },
@@ -27,21 +40,23 @@ if(typeof init === 'undefined'){
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
             console.log(text)
-            if (element[key] == "F") {
-                console.log(text)
-                try{
+            if (key == "place") {
+              console.log(text)
+              try{
                 const injectedSpan = document.createElement("SPAN");
+                let score = element[key];
                 injectedSpan.className = "circle";
-                injectedSpan.innerText = "t";
+                injectedSpan.innerText = score.toString();
+                injectedSpan.style.backgroundColor = getScoreColor(score);
                 cell.appendChild(injectedSpan);
-                }catch(e){
-                    console.log(e)
-                }
+              }catch(e){
+                console.log(e)
+              }
 
-                //cell.appendChild(text);
+              //cell.appendChild(text);
             }
             else {    
-            cell.appendChild(text);
+              cell.appendChild(text);
             }
           }
         }
@@ -51,9 +66,10 @@ if(typeof init === 'undefined'){
     const init = function(){
         
         if (!document.getElementById("injection_GR-IN")){
-            let table = document.querySelector("table");
+            let table = document.createElement("table");
             //generateTableHead(table, data);
-            generateTable(table, mountains);
+            //generateTable(table, mountains);
+            generateTable(table, extractData());
             const injectElement = document.createElement('div');
             injectElement.id = "injection_GR-IN";
             injectElement.className = 'rustyZone-element';
@@ -61,7 +77,8 @@ if(typeof init === 'undefined'){
             
             injectElement.appendChild(table)
             
-            document.getElementById("altImages").appendChild(injectElement)
+            //document.getElementById("altImages").appendChild(injectElement)
+            document.getElementById("title_feature_div").appendChild(injectElement)
         }
         const hostEle = document.createElement('div');
         hostEle.className = 'rustyZone-element-host';
