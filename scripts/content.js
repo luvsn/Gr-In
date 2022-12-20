@@ -64,7 +64,8 @@ if(typeof init === 'undefined'){
       
       
     const init = function(){
-        
+      if (!document.URL.startsWith("https://auchandrive.lu")) {
+        // Amazon
         if (!document.getElementById("injection_GR-IN")){
             let table = document.createElement("table");
             //generateTableHead(table, data);
@@ -93,6 +94,39 @@ if(typeof init === 'undefined'){
         div.innerHTML='<style>.div{border:3px solid blue;margin:10px;padding:10px;width:200px;}</style>'
         +'Hello From the Rusty Zone Shadow Root Element';
         root.appendChild(div);
+      }
+      else {
+        // Auchan
+        if (!document.getElementById("GRIN-AUCHAN")){
+          var auTitle = document.querySelector("#central-container > div > div.fiche-produit-content > div > div.right > div.main-infos > h2");
+          if(auTitle !== undefined) {
+            // Gather data
+            let productTitle = auTitle.innerText;
+            let productIndex = getAppropriateProductIndex([productTitle]);
+
+            // let p = document.createElement("p");
+            // p.innerText = FIRSTNEEDS_WORDS[productIndex];
+            // auTitle.parentElement.appendChild(p);
+
+            let table = document.createElement("table");
+            table.id = "GRIN-AUCHAN";
+            table.style.border = 1;
+            let tbody = document.createElement("tbody");
+            for(var i in FIRSTNEEDS_DATA_HEADER) {
+              let tr = document.createElement("tr");
+              let col1 = document.createElement("td");
+              col1.innerText = FIRSTNEEDS_DATA_HEADER[i];
+              let col2 = document.createElement("td");
+              col2.innerText = FIRSTNEEDS_DATA[productIndex][i];
+              tr.appendChild(col1);
+              tr.appendChild(col2);
+              tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+            auTitle.parentElement.appendChild(table);
+          }
+        }
+      }
     }
     init();
 }
