@@ -12,10 +12,10 @@
     ],
     "author": "Nima GOZALPOUR, Adrien GEETS, Lucas VISINTIN, Hugo KOLANDER",
     "action":{
-        "default_popup": "index.html",
+        "default_popup": "default.html",
         "default_title": "Gr-In",
         "default_icon": {
-          "256": "icons/default.png"
+          "38": "icons/default.png"
        }
     
 
