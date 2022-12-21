@@ -12,7 +12,7 @@ AMAZON_ATTRIBDATA = [
   [
     "Eco Label",
     document => (document.querySelector(".energyEfficiencyTextPlacement") || document.querySelector(".dp-energy-efficiency-badge-rating-border")).textContent.trim(),
-    str => 10 - (str.codePointAt(0) - "A".codePointAt(0)) * 10 / 5
+    str => 10 - (str.codePointAt(0) - "A".codePointAt(0)) * 10 / 6
   ],
   [
     "Weight",
@@ -21,8 +21,8 @@ AMAZON_ATTRIBDATA = [
   ],
   [
     "Energy consumption",
-    //document => document.evaluate("//table[@id='productDetails_techSpec_section_1']/tbody/tr/th[contains(., 'Puissance')]/../td", document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
-    document => document.evaluate('//div[@id="poExpander"]/div[1]/div/table/tbody/tr[contains(@class, "po-wattage")]/td[2]', document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
+    document => document.evaluate("//table[@id='productDetails_techSpec_section_1']/tbody/tr/th[contains(., 'Puissance') or contains(., 'Power')]/../td", document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
+    //document => document.evaluate('//div[@id="poExpander"]/div[1]/div/table/tbody/tr[contains(@class, "po-wattage")]/td[2]', document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
     str => 5 // TODO
   ]
 ];
@@ -60,4 +60,16 @@ function extractData() {
     xdata.push(dct);
   }
   return xdata;
+}
+
+function computeGlobalScore(xdata) {
+  var score = 0;
+  var count = 0;
+  for(let i in xdata) {
+    console.log("hehehe");
+    console.log(xdata[i]["place"]);
+    score += parseInt(xdata[i]["place"]);
+    count += 1;
+  }
+  return Math.floor(score / count);
 }
