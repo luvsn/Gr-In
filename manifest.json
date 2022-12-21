@@ -36,6 +36,18 @@
             "https://auchandrive.lu/*"
           ]
         }
+    ],
+
+    "web_accessible_resources": [
+      {
+        "resources": ["icons/*.png"],
+        "matches": [
+          "https://*.amazon.de/*",
+          "https://*.amazon.fr/*",
+          "https://*.amazon.com/*",
+          "https://auchandrive.lu/*"
+        ]
+      }
     ]
     
 }

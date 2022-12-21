@@ -13,6 +13,26 @@ if(typeof init === 'undefined'){
       return "green";
     }
 
+    // Create table header
+    function createHeader(colSpan, globalScore) 
+    {
+      let thead = document.createElement("thead");
+      let tr = document.createElement("tr");
+      let th = document.createElement("th");
+      th.colSpan = colSpan;
+      th.style.textAlign = "center";
+      let icon = document.createElement("img");
+      icon.src = chrome.runtime.getURL(`icons/${getScoreColor(globalScore)}.png`);
+      let text = document.createElement("p");
+      text.innerText = "Gr-In";
+      text.style.fontSize = "26px";
+      th.appendChild(icon);
+      th.appendChild(text);
+      tr.appendChild(th);
+      thead.appendChild(tr);
+      return thead;
+    }
+
 
     let mountains = [
         { name: "Manufacturer", height: "ABC", place: "F" },
@@ -34,6 +54,7 @@ if(typeof init === 'undefined'){
       */
       
       function generateTable(table, data, globalScore) {
+        table.appendChild(createHeader(3, globalScore));
         table.style.border = "6px solid";
         table.style.borderRadius = "3px";
         table.style.borderColor = getScoreColor(globalScore);
@@ -156,6 +177,7 @@ if(typeof init === 'undefined'){
             table.style.border = "6px solid green";
             table.style.borderRadius = "3px";
             table.id = "GRIN-AUCHAN";
+            table.appendChild(createHeader(2, parseInt(FIRSTNEEDS_DATA[productIndex][7])));
             let tbody = document.createElement("tbody");
             for(var i in FIRSTNEEDS_DATA_HEADER) {
               let tr = document.createElement("tr");
