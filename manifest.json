@@ -1,6 +1,6 @@
 {
     "name": "Gr-In",
-    "version": "0.0.1",
+    "version": "0.3",
     "description": "Ecological footprint for online shopping",
     "manifest_version": 3,
     "permissions": ["scripting"],
@@ -33,6 +33,10 @@
             "https://auchandrive.lu/*"
           ]
         }
-    ]
+    ],
+
+    "icons": {
+      "256": "icons/green.png"
+    }
     
 }
