@@ -47,7 +47,8 @@
           "https://*.amazon.de/*",
           "https://*.amazon.fr/*",
           "https://*.amazon.com/*",
-          "https://auchandrive.lu/*"
+          "https://auchandrive.lu/*",
+          "https://www.auchandrive.lu/*"
         ]
       }
     ]

@@ -21,7 +21,7 @@ AMAZON_ATTRIBDATA = [
   ],
   [
     "Energy consumption",
-    document => document.evaluate("//table[@id='productDetails_techSpec_section_1']/tbody/tr/th[contains(., 'Puissance') or contains(., 'Power')]/../td", document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
+    document => document.evaluate("//table[@id='productDetails_techSpec_section_1']/tbody/tr/th[contains(., 'Puissance') or contains(., 'Power') or contains(., 'Watt')]/../td", document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
     //document => document.evaluate('//div[@id="poExpander"]/div[1]/div/table/tbody/tr[contains(@class, "po-wattage")]/td[2]', document, null, XPathResult.ANY_UNORDERED_NODE_TYPE, null).singleNodeValue.innerText,
     str => 5 // TODO
   ]

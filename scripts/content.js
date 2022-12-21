@@ -100,7 +100,7 @@ if(typeof init === 'undefined'){
       
       
     const init = function(){
-      if (!document.URL.startsWith("https://auchandrive.lu")) {
+      if (document.URL.search("auchandrive.lu") == -1) {
         // Amazon
         if (!document.getElementById("injection_GR-IN")){
 
