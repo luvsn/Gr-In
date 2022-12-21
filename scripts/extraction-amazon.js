@@ -3,12 +3,12 @@
 // - name
 // - function that extracts the value from the document and returns it
 // - function that converts the value into a 0-10 score.
-let AMAZON_ATTRIBDATA = [
-  [
-    "Test",
-    document => 5,
-    str => 5
-  ],
+AMAZON_ATTRIBDATA = [
+  // [
+  //   "Test",
+  //   document => -1,
+  //   str => -1
+  // ],
   [
     "Eco Label",
     document => (document.querySelector(".energyEfficiencyTextPlacement") || document.querySelector(".dp-energy-efficiency-badge-rating-border")).textContent.trim(),
@@ -47,6 +47,14 @@ function extractData() {
     if(val == "ERROR")
       continue;
     let score = attr[2](val);
+    //let relevance = Math.floor(Math.random() * 10);
+
+    // Send computed score to the background to compute the average global score
+    chrome.runtime.sendMessage({command: "score", score: score}, function(response) {
+      console.log(response.status);
+    });
+
+
     //console.log(`${name}, value=${val}, score=${score}`)
     var dct = {"name": name, "height": val, "place": score};
     xdata.push(dct);

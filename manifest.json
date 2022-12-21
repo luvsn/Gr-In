@@ -3,7 +3,7 @@
     "version": "0.3",
     "description": "Ecological footprint for online shopping",
     "manifest_version": 3,
-    "permissions": ["scripting"],
+    "permissions": ["scripting", "tabs"],
     "host_permissions": [
       "https://*.amazon.de/*",
       "https://*.amazon.fr/*",
@@ -13,7 +13,10 @@
     "author": "Nima GOZALPOUR, Adrien GEETS, Lucas VISINTIN, Hugo KOLANDER",
     "action":{
         "default_popup": "index.html",
-        "default_title": "Gr-In"
+        "default_title": "Gr-In",
+        "default_icon": {
+          "256": "icons/green38.png"
+       }
     
 
     },
@@ -33,10 +36,6 @@
             "https://auchandrive.lu/*"
           ]
         }
-    ],
-
-    "icons": {
-      "256": "icons/green.png"
-    }
+    ]
     
 }

@@ -67,10 +67,23 @@ if(typeof init === 'undefined'){
       if (!document.URL.startsWith("https://auchandrive.lu")) {
         // Amazon
         if (!document.getElementById("injection_GR-IN")){
+
+          
+          
             let table = document.createElement("table");
             //generateTableHead(table, data);
             //generateTable(table, mountains);
+
+            chrome.runtime.sendMessage({command: "start"}, function(response) {
+              console.log(response.status);
+            });
+
             generateTable(table, extractData());
+
+            chrome.runtime.sendMessage({command: "end"}, function(response) {
+              console.log(response.status);
+            });
+
             const injectElement = document.createElement('div');
             injectElement.id = "injection_GR-IN";
             injectElement.className = 'rustyZone-element';
@@ -94,6 +107,15 @@ if(typeof init === 'undefined'){
         div.innerHTML='<style>.div{border:3px solid blue;margin:10px;padding:10px;width:200px;}</style>'
         +'Hello From the Rusty Zone Shadow Root Element';
         root.appendChild(div);
+        // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        //   var currTab = tabs[0];
+        //   if (currTab) { // Sanity check
+        //     chrome.pageAction.setIcon({tabId: currTab.id, path: 'icons/red.png'});
+        //   }
+        // });
+        //chrome.pageAction.setIcon({ tabId: tabId, path: 'icons/red.png' });
+  
+
       }
       else {
         // Auchan

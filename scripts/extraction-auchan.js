@@ -1,4 +1,4 @@
-let FIRSTNEEDS_DATA_HEADER = [
+FIRSTNEEDS_DATA_HEADER = [
     "Kind of", 
     "Carbon footprint (per serving)", 
     "Enegry needed to create", 
@@ -8,7 +8,7 @@ let FIRSTNEEDS_DATA_HEADER = [
     "Green score", 
     "Sources"
 ];
-let FIRSTNEEDS_DATA_TSV = `Beef/Viande	15.5kg CO2e	Extremely High	Medium consumption of non-renewable ressources (Fueil for the transport)	15 000 L	High air polution, mitigate water pollution, High land pollution	To be determined but defenitely low	https://en.wikipedia.org/wiki/Environmental_impact_of_meat_production#Energy_consumption  https://meatthefacts.eu/home/more-than-meats-the-eye/environment/how-much-water-does-it-take-to-produce-1kg-of-beef/ https://www.wri.org/insights/6-pressing-questions-about-beef-and-climate-change-answered https://cornellbotanicgardens.org/learn/cornell-programs/the-environmental-cost-of-hamburgers/
+FIRSTNEEDS_DATA_TSV = `Beef/Viande	15.5kg CO2e	Extremely High	Medium consumption of non-renewable ressources (Fueil for the transport)	15 000 L	High air polution, mitigate water pollution, High land pollution	To be determined but defenitely low	https://en.wikipedia.org/wiki/Environmental_impact_of_meat_production#Energy_consumption  https://meatthefacts.eu/home/more-than-meats-the-eye/environment/how-much-water-does-it-take-to-produce-1kg-of-beef/ https://www.wri.org/insights/6-pressing-questions-about-beef-and-climate-change-answered https://cornellbotanicgardens.org/learn/cornell-programs/the-environmental-cost-of-hamburgers/
 Salmon/Saumon	2-7kg CO2e	Low (Cold blooded)	Low  consumption of non-renewable ressources (Fueil for the transport)	500 L	Low air pollution, High water pollution, No land pollution	Medium to High	https://www.researchgate.net/publication/324439402_Energy_consumption_for_salmon_slaughtering_processes https://www.biomar.com/en/global/articles/news/fish-are-an-efficient-source-of-protein/
 Shampoo/Shampooing	111kg CO2e	Low 	Low  consumption of non-renewable ressources (Fueil for the transport)	Not determined	Medium air pollution, High water pollution, No land pollution	Medium	https://nanopdf.com/download/click-here-for-the-report_pdf  https://gettotext.com/water-consumption-how-much-h2o-does-make-up-production-need/
 Shower gel/Gel douche	111kg CO2e	Low 	Low  consumption of non-renewable ressources (Fueil for the transport)	Not determined	Medium air pollution, High water pollution, No land pollution	Medium	https://www.healabel.com/water-footprint-of-food-list/
@@ -21,9 +21,9 @@ Coffee/Café	0.209kg of CO2e (Increased by using filter and coffee machine)	High
 Milk/Lait	0.5kg of CO2e	Medium	High (Lots of production processes requiring cooling eating thus lot of fueil)	1000L	Medium air polution, High water pollution, High land pollution	Medium	https://www.co2everything.com/co2e-of/milk https://sentientmedia.org/milk-pollution-in-rivers/`;
 
 // Convert TSV to 2D Array
-let FIRSTNEEDS_DATA = FIRSTNEEDS_DATA_TSV.split('\n').map(line => line.split('\t'));
-let NUM_PRODUCTS = FIRSTNEEDS_DATA.length;
-let FIRSTNEEDS_WORDS = FIRSTNEEDS_DATA.map(row => row[0].toLowerCase().split(/[/]|\s/));
+FIRSTNEEDS_DATA = FIRSTNEEDS_DATA_TSV.split('\n').map(line => line.split('\t'));
+NUM_PRODUCTS = FIRSTNEEDS_DATA.length;
+FIRSTNEEDS_WORDS = FIRSTNEEDS_DATA.map(row => row[0].toLowerCase().split(/[/]|\s/));
 
 // Goal: return which product matches the given strings
 // e.g. having "Milk" in the product's title, the product is more likely to be milk
