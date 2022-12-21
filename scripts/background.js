@@ -34,7 +34,7 @@ try{
       switch (request.command) {
         case "start":
           current_item = [];
-          chrome.action.setIcon({ path: "/icons/green38.png"  }); // reset icon
+          chrome.action.setIcon({ path: "/icons/default.png"  }); // reset icon
           sendResponse({status: "New product deteced."});
           break;
         case "score":
@@ -49,9 +49,9 @@ try{
               count++;
           });
           let globalscore = total/count
-          if (globalscore >= 7) chrome.action.setIcon({ path: "/icons/green38.png"  });
-          if (globalscore < 7 && globalscore >= 4) chrome.action.setIcon({ path: "/icons/yellow38.png"  });
-          if (globalscore < 4) chrome.action.setIcon({ path: "/icons/red38.png"  });
+          if (globalscore >= 7) chrome.action.setIcon({ path: "/icons/green.png"  });
+          if (globalscore < 7 && globalscore >= 4) chrome.action.setIcon({ path: "/icons/yellow.png"  });
+          if (globalscore < 4) chrome.action.setIcon({ path: "/icons/red.png"  });
 
           sendResponse({status: "Icon changed."});
 
