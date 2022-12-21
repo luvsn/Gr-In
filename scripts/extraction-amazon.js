@@ -12,7 +12,7 @@ AMAZON_ATTRIBDATA = [
   [
     "Eco Label",
     document => (document.querySelector(".energyEfficiencyTextPlacement") || document.querySelector(".dp-energy-efficiency-badge-rating-border")).textContent.trim(),
-    str => 10 - (str.codePointAt(0) - "A".codePointAt(0)) * 10 / 6
+    str => Math.ceil(10 - (str.codePointAt(0) - "A".codePointAt(0)) * 10 / 6)
   ],
   [
     "Weight",

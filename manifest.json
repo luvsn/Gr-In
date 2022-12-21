@@ -8,7 +8,8 @@
       "https://*.amazon.de/*",
       "https://*.amazon.fr/*",
       "https://*.amazon.com/*",
-      "https://auchandrive.lu/*"
+      "https://auchandrive.lu/*",
+      "https://www.auchandrive.lu/*"
     ],
     "author": "Nima GOZALPOUR, Adrien GEETS, Lucas VISINTIN, Hugo KOLANDER",
     "action":{
@@ -33,7 +34,8 @@
             "https://*.amazon.de/*",
             "https://*.amazon.fr/*",
             "https://*.amazon.com/*",
-            "https://auchandrive.lu/*"
+            "https://auchandrive.lu/*",
+            "https://www.auchandrive.lu/*"
           ]
         }
     ],
