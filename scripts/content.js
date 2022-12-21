@@ -33,7 +33,10 @@ if(typeof init === 'undefined'){
       }
       */
       
-      function generateTable(table, data) {
+      function generateTable(table, data, globalScore) {
+        table.style.border = "6px solid";
+        table.style.borderRadius = "3px";
+        table.style.borderColor = getScoreColor(globalScore);
         for (let element of data) {
           let row = table.insertRow();
           for (key in element) {
@@ -60,6 +63,18 @@ if(typeof init === 'undefined'){
             }
           }
         }
+        let row = table.insertRow();
+        let cell1 = row.insertCell();
+        cell1.innerHTML = "<b>Global score</b>";
+        let cell2 = row.insertCell();
+        cell2.style.textAlign = "center";
+        const injectedSpan = document.createElement("SPAN");
+        injectedSpan.className = "circle";
+        injectedSpan.style.backgroundColor = getScoreColor(globalScore);
+        cell2.appendChild(injectedSpan);
+        cell2.appendChild(document.createTextNode(`${globalScore} / 10`));
+        row.appendChild(cell1);
+        row.appendChild(cell2);
       }
       
       
@@ -70,7 +85,9 @@ if(typeof init === 'undefined'){
             let table = document.createElement("table");
             //generateTableHead(table, data);
             //generateTable(table, mountains);
-            generateTable(table, extractData());
+            let xdata = extractData();
+            let globalScore = computeGlobalScore(xdata);
+            generateTable(table, xdata, globalScore);
             const injectElement = document.createElement('div');
             injectElement.id = "injection_GR-IN";
             injectElement.className = 'rustyZone-element';
@@ -108,16 +125,53 @@ if(typeof init === 'undefined'){
             // p.innerText = FIRSTNEEDS_WORDS[productIndex];
             // auTitle.parentElement.appendChild(p);
 
+            let tstyle = "border: 1px lightgray solid; padding: 3px;";
+
             let table = document.createElement("table");
+            table.style.tableLayout = "fixed";
+            table.style.width = "100%";
+            table.style.borderCollapse = "separate";
+            table.style.border = "6px solid green";
+            table.style.borderRadius = "3px";
             table.id = "GRIN-AUCHAN";
-            table.style.border = 1;
             let tbody = document.createElement("tbody");
             for(var i in FIRSTNEEDS_DATA_HEADER) {
               let tr = document.createElement("tr");
               let col1 = document.createElement("td");
+              col1.style = tstyle;
               col1.innerText = FIRSTNEEDS_DATA_HEADER[i];
               let col2 = document.createElement("td");
-              col2.innerText = FIRSTNEEDS_DATA[productIndex][i];
+              col2.style = tstyle;
+              if(FIRSTNEEDS_DATA_HEADER[i] == "Sources") {
+                let links = FIRSTNEEDS_DATA[productIndex][i].split(" ");
+                let ul = document.createElement("ul");
+                for(var l in links) {
+                  let li = document.createElement("li");
+                  let a = document.createElement("a");
+                  a.href = links[l];
+                  a.innerText = links[l];
+                  li.appendChild(a);
+                  ul.appendChild(li);
+                }
+                col2.appendChild(ul);
+              } else if(FIRSTNEEDS_DATA_HEADER[i] == "Green score (text)") {
+                continue;
+              } else if(FIRSTNEEDS_DATA_HEADER[i] == "Green score") {
+                let para = document.createElement("p");
+                let score = parseInt(FIRSTNEEDS_DATA[productIndex][i]);
+                const injectedSpan = document.createElement("span");
+                injectedSpan.className = "circle";
+                injectedSpan.style.backgroundColor = getScoreColor(score);
+                table.style.borderColor = getScoreColor(score);
+                para.style.textAlign = "center";
+                para.appendChild(injectedSpan);
+                para.appendChild(document.createTextNode(`${score} / 10`));
+                col2.appendChild(para);
+              } else if(FIRSTNEEDS_DATA_HEADER[i] == "Kind of") {
+                col2.innerText = FIRSTNEEDS_WORDS[productIndex][0];
+              } else {
+                col2.innerText = FIRSTNEEDS_DATA[productIndex][i];
+              }
               tr.appendChild(col1);
               tr.appendChild(col2);
               tbody.appendChild(tr);
