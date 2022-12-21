@@ -57,8 +57,8 @@ try{
               count++;
           });
           let globalscore = total/count
-          if (globalscore >= 7) chrome.action.setIcon({ path: "/icons/green.png"  });
-          if (globalscore < 7 && globalscore >= 4) chrome.action.setIcon({ path: "/icons/yellow.png"  });
+          if (globalscore >= 8) chrome.action.setIcon({ path: "/icons/green.png"  });
+          if (globalscore < 8 && globalscore >= 4) chrome.action.setIcon({ path: "/icons/yellow.png"  });
           if (globalscore < 4) chrome.action.setIcon({ path: "/icons/red.png"  });
           
           if (isNaN(globalscore) || globalscore == -1) {
